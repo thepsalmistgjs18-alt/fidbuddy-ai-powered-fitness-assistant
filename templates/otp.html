@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Verify OTP / FitBuddy{% endblock %}
+{% block content %}
+<section class="hero"><div class="kicker">Identity verification</div><h1>Enter the code.</h1><p class="lede">Your six-digit verification code was generated for <strong>{{ contact }}</strong>.</p></section>
+<section class="panel" style="max-width:640px"><form action="/verify-otp" method="post"><input type="hidden" name="contact" value="{{ contact }}"><label for="otp">One-time password</label><input id="otp" name="otp" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="000000" required>{% if dev_otp %}<p class="dev-otp">Local development code: <strong>{{ dev_otp }}</strong></p>{% endif %}{% if error %}<p style="color:var(--danger)">{{ error }}</p>{% endif %}<div class="form-actions"><button type="submit">Verify and continue -></button><a href="/">Start over</a></div></form></section>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Accounts / FitBuddy{% endblock %}
+{% block content %}
+<section class="hero"><div class="kicker">Admin archive</div><h1>Active hunters.</h1><p class="lede">Accounts, goals, plans, and nutrition intel currently stored by FitBuddy.</p></section>
+<section class="panel">{% if users %}<table><tr><th>Name</th><th>Gmail / mobile</th><th>Goal</th><th>Intensity</th><th>Latest plan</th><th>Nutrition</th></tr>{% for user in users %}<tr><td>{{ user.name }}</td><td>{{ user.contact }}</td><td>{{ user.goal }}</td><td>{{ user.intensity }}</td><td><div class="plan">{{ user.workout_plan or "-" }}</div></td><td>{{ user.nutrition_tip or "-" }}</td></tr>{% endfor %}</table>{% else %}<p class="muted">No accounts yet. Generate a plan first.</p>{% endif %}</section>
+{% endblock %}

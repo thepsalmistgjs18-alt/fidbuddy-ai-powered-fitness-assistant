@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Welcome / FitBuddy{% endblock %}
+{% block content %}
+<section class="hero"><div class="kicker">Welcome to the shadow gym</div><h1>Awaken your next level.</h1><p class="lede">A lifetime fitness protocol for training, nutrition, running, recovery, and daily proof. Enter your Gmail or mobile to continue, or enter as a guest.</p><div class="welcome-actions"><form action="/login" method="post" class="form-actions"><input name="contact" placeholder="you@email.com or +91..." required><button type="submit">Continue with Gmail or mobile -></button></form><form action="/guest-login" method="post"><button type="submit">Continue as guest -></button></form></div></section>
+<section id="login" class="panel login-panel"><div class="kicker">Quick entry</div><h2>Enter your contact</h2><p class="muted">Existing profiles go straight to the app. New profiles will enter a short setup screen.</p><form action="/login" method="post" class="form-actions"><input name="contact" placeholder="you@email.com or +91..." required><button type="submit">Enter FitBuddy -></button></form></section>
+{% if error %}<p style="color:var(--danger)">{{ error }}</p>{% endif %}
+{% endblock %}

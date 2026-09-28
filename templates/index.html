@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy / Shadow Protocol{% endblock %}
+{% block content %}
+<section class="hero"><div class="kicker">System online // personal gym OS</div><h1>Welcome back, {{ user.name }}.</h1><p class="lede">Your shadow protocol is active. Train with intent, record the mission, and rise from {{ rank.letter }}-rank {{ rank.title }}.</p><div class="rank-chip">RANK {{ rank.letter }} <span>{{ rank.score }} POWER</span></div></section>
+<section class="grid">
+  <article class="card"><div class="kicker">01 / workout engine</div><h2>Today's mission.</h2><p>Generate seven different gym days with exact exercises, sets, reps, running, and recovery.</p><a class="button" href="/workout-plan">Enter workout lab -></a></article>
+  <article class="card"><div class="kicker">02 / nutrition intel</div><h2>Fuel the grind.</h2><p>Get practical nutrition and recovery tips matched to your current goal and training focus.</p><a class="button" href="/nutrition-tips">Open nutrition intel -></a></article>
+  <article class="card"><div class="kicker">03 / daily mission</div><h2>Log the proof.</h2><p>Record kilometers, workout names, completion, and notes so every session becomes part of your story.</p><a class="button" href="/daily-log">Record today's mission -></a></article>
+  <article class="card"><div class="kicker">04 / progression</div><h2>See your power.</h2><p>Review total distance, completed sessions, and recent activity from one focused progress page.</p><a class="button" href="/progress">View progress -></a></article>
+</section>
+<section class="panel" style="margin-top:18px"><div class="kicker">Identity protocol</div><h2>Start with Gmail or mobile. No numeric user ID.</h2><p class="muted">Your contact is your account key across plans, nutrition, daily logs, and progress.</p></section>
+{% endblock %}

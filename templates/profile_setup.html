@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Awaken Profile / FitBuddy{% endblock %}
+{% block content %}
+<section class="hero"><div class="kicker">Profile awakening</div><h1>Tell us who is training.</h1><p class="lede">These details shape your first lifetime workout and nutrition protocol.</p></section>
+<section class="panel"><form action="/profile-setup" method="post"><input type="hidden" name="contact" value="{{ contact }}"><div class="form-grid"><div><label for="username">Name</label><input id="username" name="username" placeholder="Your name" required></div><div><label>Identity</label><p class="muted">{% if guest %}Guest profile / no contact required{% else %}{{ contact }}{% endif %}</p></div><div><label for="age">Age</label><input id="age" name="age" type="number" min="1" max="119" required></div><div><label for="weight">Weight (kg)</label><input id="weight" name="weight" type="number" step="0.1" min="1" required></div><div><label for="goal">Main goal</label><input id="goal" name="goal" placeholder="strength, endurance, fat loss" required></div><div><label for="intensity">Starting intensity</label><select id="intensity" name="intensity"><option>low</option><option selected>medium</option><option>high</option></select></div></div><div class="form-actions"><button type="submit">Awaken my protocol -></button></div></form></section>
+{% endblock %}

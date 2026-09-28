@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}FitBuddy / Shadow Protocol{% endblock %}</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <aside class="guide-rail"><div class="hunter hunter-small"><div class="smoke smoke-a"></div><div class="smoke smoke-b"></div><div class="hunter-head"></div><div class="hunter-body"></div><div class="hunter-cloak"></div></div><div class="guide-copy"><span>SHADOW GUIDE</span><strong>Keep moving.<br>Keep rising.</strong></div></aside>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="/">FITBUDDY <span>/ SHADOW PROTOCOL</span></a>
+      <nav>
+        <a href="/workout-plan">Workout</a><a href="/nutrition-tips">Nutrition</a>
+        <a href="/daily-log">Daily log</a><a href="/progress">Progress</a><a href="/profile">Profile</a>
+        <a href="/view-all-users">Admin</a>
+        <a href="/logout">Logout</a>
+      </nav>
+      {% if user %}<a class="top-profile" href="/profile"><span class="profile-picture">{{ user.name[0]|upper }}</span><span><b>{{ user.name }}</b><small>RANK {{ rank.letter }} / {{ profile.streak }} DAY STREAK</small></span></a>{% endif %}
+    </header>
+    <div class="quote-bar"><span>TRANSMISSION // MOTIVATION</span><strong>{{ quote }}</strong></div>
+    {% block content %}{% endblock %}
+    <footer class="site-footer">
+      <span>FITBUDDY // TRAIN WITH INTENT // RECOVER WITH PURPOSE</span>
+      <a href="/view-all-users" class="footer-admin">Admin view</a>
+    </footer>
+  </div>
+</body>
+</html>

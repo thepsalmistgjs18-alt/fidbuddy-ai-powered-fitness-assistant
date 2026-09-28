@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Nutrition Intel / FitBuddy{% endblock %}
+{% block content %}
+<section class="hero"><div class="kicker">02 / nutrition intel</div><h1>Fuel the grind.</h1><p class="lede">Ask for a goal-specific tip, then use it at your next meal. Simple, repeatable, useful.</p></section>
+<section class="panel"><div class="kicker">Focus target</div><h2>What are you training for?</h2><form action="/generate-nutrition-tip" method="post" class="form-actions"><input id="goal" name="goal" value="{{ goal }}" placeholder="muscle gain, recovery, energy" required><button type="submit">Refresh intel -></button></form></section>
+<section class="panel calorie-panel"><div class="kicker">Calories calculator</div><div class="calc-grid"><label>Body weight (kg)<input id="calcWeight" type="number" min="30" max="200" value="{{ user.weight if user else 70 }}"></label><label>Goal<select id="calcGoal"><option value="fat-loss">Fat loss</option><option value="maintenance">Maintenance</option><option value="muscle-gain">Muscle gain</option></select></label></div><div class="calc-output"><div><span>Daily target</span><strong id="dailyTarget">~2,300 kcal</strong></div><div><span>Protein target</span><strong id="proteinTarget">~154 g</strong></div></div></section>
+<section class="daily-meal-plan">{% for day in daily_meals %}<article class="day-plan"><div class="day-header"><div class="kicker">{{ day.day }}</div><h2>{{ day.focus }}</h2></div><div class="meal-stack">{% for meal in day.meals %}<article class="meal-box {{ meal['tone'] }}"><div class="meal-box-head"><span class="meal-icon">{{ meal['symbol'] }}</span><div><small>{{ meal['label'] }}</small><strong>{{ meal['title'] }}</strong></div></div><div class="meal-box-body"><span>{{ meal['items'] }}</span></div><div class="meal-box-metrics"><span>{{ meal['calories'] }} kcal</span><span>{{ meal['protein'] }}g protein</span></div></article>{% endfor %}</div></article>{% endfor %}</section>
+<details class="panel protocol-details"><summary>Open full nutrition transmission</summary><div class="plan">{{ nutrition_tip }}</div></details>
+<script>
+  const weightInput = document.getElementById('calcWeight');
+  const goalInput = document.getElementById('calcGoal');
+  const dailyTarget = document.getElementById('dailyTarget');
+  const proteinTarget = document.getElementById('proteinTarget');
+
+  function updateCalc() {
+    const weight = Number(weightInput.value || 70);
+    const goal = goalInput.value;
+    let calories = weight * 26;
+    if (goal === 'fat-loss') calories = weight * 24;
+    if (goal === 'muscle-gain') calories = weight * 30;
+    const protein = Math.round(weight * 2.2);
+    dailyTarget.textContent = `~${Math.round(calories).toLocaleString()} kcal`;
+    proteinTarget.textContent = `~${protein} g`;
+  }
+
+  const goalValue = "{{ user.goal if user else goal }}".toLowerCase().replace(/\s+/g, '-');
+  if (goalValue.includes('fat') || goalValue.includes('cut')) goalInput.value = 'fat-loss';
+  else if (goalValue.includes('muscle') || goalValue.includes('gain')) goalInput.value = 'muscle-gain';
+  else goalInput.value = 'maintenance';
+
+  weightInput.addEventListener('input', updateCalc);
+  goalInput.addEventListener('change', updateCalc);
+  updateCalc();
+</script>
+{% endblock %}

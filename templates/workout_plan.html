@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Workout Lab / FitBuddy{% endblock %}
+{% block content %}
+<section class="hero"><div class="kicker">01 / workout engine</div><h1>Today's mission.</h1><p class="lede">Set your target. Get seven different gym days with exact exercise names, sets, reps, running, recovery, and intensity.</p></section>
+<section class="panel"><form action="/generate-workout" method="post"><div class="form-grid">
+  <div><label for="username">Name</label><input id="username" name="username" required></div>
+  {% if guest %}<input type="hidden" id="contact" name="contact" value="{{ contact }}"><div><label>Guest mode</label><p class="muted">Temporary guest profile active. No contact details required.</p></div>{% else %}<div><label for="contact">Gmail or mobile</label><input id="contact" name="contact" placeholder="you@email.com or +91..." required></div>{% endif %}
+  <div><label for="age">Age</label><input id="age" name="age" type="number" min="1" max="119" required></div>
+  <div><label for="weight">Weight (kg)</label><input id="weight" name="weight" type="number" step="0.1" min="1" required></div>
+  <div><label for="goal">Primary goal</label><input id="goal" name="goal" placeholder="strength, fat loss, endurance" required></div>
+  <div><label for="intensity">Intensity</label><select id="intensity" name="intensity"><option>low</option><option selected>medium</option><option>high</option></select></div>
+</div><div class="form-actions"><button type="submit">Generate my 7-day missions -></button><span class="muted">Stop if you feel pain. Train intelligently.</span></div></form></section>
+{% endblock %}

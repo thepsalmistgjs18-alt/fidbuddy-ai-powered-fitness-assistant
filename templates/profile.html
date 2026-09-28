@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Hunter Profile / FitBuddy{% endblock %}
+{% block content %}
+<section class="profile-hero"><div class="profile-avatar"><div class="avatar-core"></div></div><div><div class="kicker">Hunter profile</div><h1>{{ user.name }}</h1><p class="muted">{{ user.contact }} // {{ user.goal }}</p><div class="rank-chip">RANK {{ rank.letter }} <span>{{ rank.title }} / {{ rank.score }} POWER</span></div></div></section>
+<section class="grid three"><article class="card"><div class="stat">{{ progress.total_km }}</div><div class="stat-label">lifetime km</div></article><article class="card"><div class="stat">{{ progress.workouts }}</div><div class="stat-label">completed missions</div></article><article class="card"><div class="stat">{{ progress.nutrition_days }}</div><div class="stat-label">nutrition days</div></article></section>
+<section class="panel" style="margin-top:18px"><div class="kicker">Profile stats</div><div class="profile-facts"><span><b>{{ user.age }}</b> age</span><span><b>{{ user.weight }}</b> kg</span><span><b>{{ user.intensity }}</b> intensity</span></div></section>
+<section class="profile-actions"><form action="/logout" method="get"><button type="submit">Logout</button></form><form action="/delete-account" method="post"><button type="submit" class="danger-button">Delete account</button></form></section>
+{% endblock %}
